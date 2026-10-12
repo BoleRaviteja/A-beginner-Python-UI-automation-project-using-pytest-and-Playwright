@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+test-results/
+reports/artifacts/
+reports/*.html
+playwright-report/
