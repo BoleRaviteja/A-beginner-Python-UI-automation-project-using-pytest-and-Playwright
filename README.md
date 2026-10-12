@@ -39,6 +39,10 @@ Every test run captures screenshots and videos and generates an HTML test report
 
 Open `reports/report.html` in a browser to review the latest run. These generated outputs are replaced or updated by the next run.
 
+## Public test report
+
+On every push to `main`, GitHub Actions runs the tests and publishes the latest self-contained HTML report to [GitHub Pages](https://boleraviteja.github.io/A-beginner-Python-UI-automation-project-using-pytest-and-Playwright/). To enable publishing, open the repository's **Settings > Pages** and set **Build and deployment > Source** to **GitHub Actions**. The report is updated only when the tests pass. You can also start a run manually from the repository's **Actions** tab.
+
 ## End-to-end test
 
 The test in `tests/test_full.py` logs in as `standard_user`, exercises inventory and cart interactions, completes checkout, and verifies that logout returns to the login page. `page` is a Playwright fixture supplied by pytest-playwright. Playwright's `expect` assertions wait for the page to reach the expected state, so fixed sleeps are unnecessary.
