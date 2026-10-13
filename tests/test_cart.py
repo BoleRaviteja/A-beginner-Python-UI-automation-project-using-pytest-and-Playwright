@@ -12,5 +12,5 @@ def test_backpack_is_added_to_cart(
 
     authenticated_inventory_page.open_cart()
 
-    expect(cart_page.backpack_name).to_have_text("Sauce Labs Backpack")
+    expect(cart_page.backpack_name).to_have_text("Unexpected Product Name")
     expect(cart_page.backpack_price).to_have_text("$29.99")
