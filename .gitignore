@@ -4,5 +4,6 @@ __pycache__/
 *.py[cod]
 test-results/
 reports/artifacts/
+reports/tests-*/
 reports/*.html
 playwright-report/

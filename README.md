@@ -1,6 +1,6 @@
 # Playwright QA Practice
 
-A beginner Python UI automation project using pytest and Playwright. The end-to-end test covers SauceDemo login, inventory and cart interactions, checkout, order completion, and logout.
+A Python UI automation project using pytest and Playwright to test SauceDemo login, cart, and checkout workflows. The tests use a Page Object Model so page selectors and browser actions are kept separate from test scenarios.
 
 ## Setup (Windows PowerShell)
 
@@ -35,17 +35,35 @@ python -m pytest -v --headed
 Every test run captures screenshots and videos and generates an HTML test report. Outputs are organized here:
 
 - `reports/report.html`: self-contained pytest-html report with environment, summary, and per-test results.
-- `reports/artifacts/`: per-test folders containing screenshots and `video.webm` recordings.
+- `reports/`: per-test folders containing screenshots and `video.webm` recordings.
 
 Open `reports/report.html` in a browser to review the latest run. These generated outputs are replaced or updated by the next run.
 
-## End-to-end test
+## Project structure
 
-The test in `tests/test_full.py` logs in as `standard_user`, exercises inventory and cart interactions, completes checkout, and verifies that logout returns to the login page. `page` is a Playwright fixture supplied by pytest-playwright. Playwright's `expect` assertions wait for the page to reach the expected state, so fixed sleeps are unnecessary.
+```text
+pages/                  Page objects and UI actions
+conftest.py             Shared Playwright page-object fixtures
+tests/test_login.py     Negative login scenarios
+tests/test_cart.py      Cart item and price checks
+tests/test_checkout.py  Required-field and successful-purchase tests
+reports/                Generated HTML report, screenshots, and videos
+```
+
+`page` is a browser-page fixture supplied by pytest-playwright. Page objects contain selectors and actions; tests use Playwright's `expect` assertions to verify outcomes. These assertions wait for the expected state, so fixed sleeps are unnecessary.
+
+## Run selected tests
+
+```powershell
+python -m pytest tests/test_login.py -v
+python -m pytest tests/test_checkout.py -v
+python -m pytest tests/test_cart.py -v --headed
+```
 
 ## Learning workflow
 
 1. Run the test and confirm it passes.
 2. Change one expected value temporarily and observe the failure output.
-3. Add focused tests for invalid login and checkout validation.
-4. When a test fails, use the assertion message and rerun with `--headed` to inspect the browser behavior.
+3. Add another scenario as a focused test, such as removing the backpack.
+4. Put reusable page interactions in the matching page object.
+5. When a test fails, use the assertion message and rerun the failing test with `--headed` to inspect the browser behavior.
