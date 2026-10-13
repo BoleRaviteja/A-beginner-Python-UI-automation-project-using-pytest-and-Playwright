@@ -16,5 +16,8 @@ class InventoryPage:
     def add_backpack(self) -> None:
         self.page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click()
 
+    def add_bike_light(self) -> None:
+        self.page.locator('[data-test="add-to-cart-sauce-labs-bike-light"]').click()
+
     def open_cart(self) -> None:
         self.page.locator('[data-test="shopping-cart-link"]').click()

@@ -23,10 +23,17 @@ class CartPage:
     def cart_badge(self) -> Locator:
         return self.page.locator('[data-test="shopping-cart-badge"]')
 
+    @property
+    def item_names(self) -> Locator:
+        return self.page.locator('[data-test="inventory-item-name"]')
+
     def remove_backpack(self) -> None:
         self.backpack_item.locator(
             '[data-test="remove-sauce-labs-backpack"]'
         ).click()
+
+    def continue_shopping(self) -> None:
+        self.page.locator('[data-test="continue-shopping"]').click()
 
     def checkout(self) -> None:
         self.page.locator('[data-test="checkout"]').click()
